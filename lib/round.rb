@@ -6,8 +6,8 @@ attr_reader :deck,
   def initialize(deck)
     @deck = deck
     @guesses = []
-    @card_count = 0
-    @number_correct = 0
+    @card_count = 0.0
+    @number_correct = 0.0
   end
 
   def current_card
@@ -17,8 +17,10 @@ attr_reader :deck,
   end
 
   def record_guess(response)
-    #if response is equal to answer, add one to number_correct
+    @response = response
     guesses << Guess.new(response, deck.cards[@card_count])
+    @number_correct += 1 if @response == deck.cards[@card_count].answer
+    @card_count += 1
     #Add a new guess into a guess array, with guess and current card as input
     guesses.last #Access the last element of the array
   end
@@ -28,10 +30,11 @@ attr_reader :deck,
   end
 
   def number_correct
-    if guesses[@card_count] == deck.cards[@card_count].answer
-      @number_correct += 1
-    end
     @number_correct
+  end
+
+  def percent_correct
+    @percent_correct = @number_correct / @card_count * 100
   end
 
 

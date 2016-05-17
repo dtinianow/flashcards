@@ -126,7 +126,7 @@ class FlashcardsTest < Minitest::Test
     assert_equal 1, round.guesses.count
   end
 
-  def test_first_guess_in_round_is_correct
+  def test_round_returns_correct_for_first_guess
     #skip
     card_1 = Card.new("What is the capital of Alaska?", "Juneau")
     card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
@@ -146,6 +146,71 @@ class FlashcardsTest < Minitest::Test
     assert_equal 1, round.number_correct
   end
 
+  def test_round_changes_to_next_card_after_a_guess
+    #skip
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+    round.current_card
+    round.record_guess("Juneau")
+    assert_instance_of Card, round.current_card
+  end
 
+  def test_round_records_a_guess_for_another_next_card
+    #skip
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+    round.current_card
+    round.record_guess("Juneau")
+    round.current_card
+    assert_instance_of Guess, round.record_guess("2")
+  end
+
+  def test_guess_count_increases
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+    round.current_card
+    round.record_guess("Juneau")
+    round.current_card
+    round.record_guess("2")
+    assert_equal 2, round.guesses.count
+  end
+
+  def test_round_returns_incorrect_for_last_guess
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+    round.current_card
+    round.record_guess("Juneau")
+    round.current_card
+    round.record_guess("2")
+    assert_equal "Incorrect.", round.guesses.last.feedback
+  end
+
+  def test_round_returns_number_correct_after_an_incorrect_guess_is_made
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+    round.record_guess("Juneau")
+    round.record_guess("2")
+    assert_equal 1, round.number_correct
+  end
+
+  def test_round_returns_percent_of_correct_guesses
+    card_1 = Card.new("What is the capital of Alaska?", "Juneau")
+    card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
+    deck = Deck.new([card_1, card_2])
+    round = Round.new(deck)
+    round.record_guess("Juneau")
+    round.record_guess("2")
+    assert_equal 50, round.percent_correct
+  end
 
 end
