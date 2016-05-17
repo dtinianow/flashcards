@@ -28,6 +28,9 @@ attr_reader :deck,
   end
 
   def number_correct
+    if guesses[@card_count] == deck.cards[@card_count].answer
+      @number_correct += 1
+    end
     @number_correct
   end
 
