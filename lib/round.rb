@@ -1,7 +1,8 @@
 class Round
 
 attr_reader :deck,
-            :guesses
+            :guesses,
+            :card_count
 
   def initialize(deck)
     @deck = deck
