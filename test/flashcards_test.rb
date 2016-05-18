@@ -5,6 +5,7 @@ require './lib/card'
 require './lib/guess'
 require './lib/deck'
 require './lib/round'
+require './lib/card_generator'
 
 class FlashcardsTest < Minitest::Test
 
@@ -170,6 +171,7 @@ class FlashcardsTest < Minitest::Test
   end
 
   def test_guess_count_increases
+    #skip
     card_1 = Card.new("What is the capital of Alaska?", "Juneau")
     card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
     deck = Deck.new([card_1, card_2])
@@ -182,6 +184,7 @@ class FlashcardsTest < Minitest::Test
   end
 
   def test_round_returns_incorrect_for_last_guess
+    #skip
     card_1 = Card.new("What is the capital of Alaska?", "Juneau")
     card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
     deck = Deck.new([card_1, card_2])
@@ -194,6 +197,7 @@ class FlashcardsTest < Minitest::Test
   end
 
   def test_round_returns_number_correct_after_an_incorrect_guess_is_made
+    #skip
     card_1 = Card.new("What is the capital of Alaska?", "Juneau")
     card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
     deck = Deck.new([card_1, card_2])
@@ -204,6 +208,7 @@ class FlashcardsTest < Minitest::Test
   end
 
   def test_round_returns_percent_of_correct_guesses
+    #skip
     card_1 = Card.new("What is the capital of Alaska?", "Juneau")
     card_2 = Card.new("Approximately how many miles are in one astronomical unit?", "93,000,000")
     deck = Deck.new([card_1, card_2])
@@ -212,5 +217,42 @@ class FlashcardsTest < Minitest::Test
     round.record_guess("2")
     assert_equal 50, round.percent_correct
   end
+
+  def test_card_generator_returns_array
+    #skip
+    filename = "./lib/cards.txt"
+    cards = CardGenerator.new(filename).cards
+    assert_instance_of Array, cards
+  end
+
+  def test_card_generator_holds_cards
+    #skip
+    filename = "./lib/cards.txt"
+    cards = CardGenerator.new(filename).cards
+    assert_instance_of Card, cards.first
+  end
+
+  def test_card_generator_contains_question
+    #skip
+    filename = "./lib/cards.txt"
+    cards = CardGenerator.new(filename).cards
+    assert_equal "What is 5 + 5?", cards.first.question
+  end
+
+  def test_card_generator_contains_answer
+    #skip
+    filename = "./lib/cards.txt"
+    cards = CardGenerator.new(filename).cards
+    assert_equal "10", cards.first.answer
+  end
+
+  def test_card_generator_contains_more_than_one_question_and_answer
+    #skip
+    filename = "./lib/cards.txt"
+    cards = CardGenerator.new(filename).cards
+    assert_equal "What cardboard cutout lives at Turing?", cards.last.question
+    assert_equal "Justin bieber", cards.last.answer
+  end
+
 
 end
