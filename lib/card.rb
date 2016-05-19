@@ -6,8 +6,8 @@ attr_reader :question,
 
   def initialize(question, answer, hint = "")
     @question = question
-    @answer = answer
-    @hint = hint
+    @answer   = answer
+    @hint     = hint
   end
 
 end

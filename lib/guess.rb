@@ -5,7 +5,7 @@ attr_reader :response,
 
   def initialize(response, card)
     @response = response
-    @card = card
+    @card     = card
   end
 
   def correct?
@@ -14,8 +14,6 @@ attr_reader :response,
 
   def feedback
     @response == card.answer ? "Correct!" : "Incorrect."
-    # "Correct!"   if @response == card.answer
-    # "Incorrect." if @response != card.answer
   end
 
 end

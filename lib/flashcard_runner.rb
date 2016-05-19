@@ -8,10 +8,10 @@ require './lib/card_generator.rb'
 filename = ARGV[0]
 if filename == nil || !File.exist?(filename)
   loop do
-  print "Please enter a filename containing your cards: "
-  filename = STDIN.gets.chomp.to_s
-  break if File.exist?(filename)
-end
+    print "Please enter a filename containing your cards: "
+    filename = STDIN.gets.chomp.to_s
+    break if File.exist?(filename)
+  end
 end
 
 cards = CardGenerator.new(filename).cards
@@ -26,7 +26,6 @@ round.deck.cards.each do |card|
   puts "Question: #{card.question}"
   user_input = STDIN.gets.chomp.to_s
   if user_input == 'hint'
-      #binding.pry
     puts "#{card.hint}"
     user_input = STDIN.gets.chomp.to_s
   end

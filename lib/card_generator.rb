@@ -3,7 +3,7 @@ class CardGenerator
 attr_reader :card_deck
 
   def initialize(filename)
-    @filename = filename
+    @filename  = filename
     @card_deck = []
   end
 
