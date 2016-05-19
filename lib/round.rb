@@ -13,16 +13,16 @@ attr_reader :deck,
 
   def current_card
     #accesses the first card in the deck
-    #@card_count is used to iterate through the deck of cards
+    #@card_count iterates through the deck of cards
     deck.cards[@card_count]
   end
 
   def record_guess(response)
-    @response = response
-    guesses << Guess.new(response, deck.cards[@card_count])
-    @number_correct += 1 if @response == deck.cards[@card_count].answer
-    @card_count += 1
     #Add a new guess into a guess array, with guess and current card as input
+    guesses << Guess.new(response, deck.cards[@card_count])
+    @number_correct += 1 if response == deck.cards[@card_count].answer
+    #Increase number correct if the response matches the answer on card
+    @card_count += 1
     guesses.last #Access the last element of the array
   end
 

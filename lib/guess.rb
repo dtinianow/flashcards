@@ -13,12 +13,9 @@ attr_reader :response,
   end
 
   def feedback
-    if @response == card.answer
-      "Correct!"
-    else
-      "Incorrect."
-    end
+    @response == card.answer ? "Correct!" : "Incorrect."
+    # "Correct!"   if @response == card.answer
+    # "Incorrect." if @response != card.answer
   end
-
 
 end

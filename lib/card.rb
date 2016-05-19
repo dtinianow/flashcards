@@ -8,5 +8,4 @@ attr_reader :question,
     @answer = answer
   end
 
-
 end
