@@ -1,4 +1,4 @@
-What is 5 + 5?,10,Buy a calculator
+What is 5 + 5?,10,Get a calculator
 What is Rachel's favorite animal?,red panda,The animal color is red
 What is Mike's middle name?,nobody knows,It's a mystery
 What cardboard cutout lives at Turing?,Justin bieber,Bad pop singer

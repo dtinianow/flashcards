@@ -5,8 +5,6 @@ require './lib/deck'
 require './lib/round'
 require './lib/card_generator.rb'
 
-# filename = "./lib/cards.txt"
-
 filename = ARGV[0]
 if filename == nil || !File.exist?(filename)
   loop do
@@ -27,6 +25,11 @@ round.deck.cards.each do |card|
   puts "This is card number #{round.card_count.to_i + 1} out of #{round.deck.count}."
   puts "Question: #{card.question}"
   user_input = STDIN.gets.chomp.to_s
+  if user_input == 'hint'
+      #binding.pry
+    puts "#{card.hint}"
+    user_input = STDIN.gets.chomp.to_s
+  end
   round.record_guess(user_input)
   puts round.guesses.last.feedback
 end
